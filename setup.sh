@@ -39,12 +39,13 @@ info_hc() {
     msg "app: $app"
     msg "working: $working"
     msg "editor: $ed"
-}
-
-inst_bin() {
     msg "p1: $p"
     msg "inst: $inst"
     msg "clone: $repo"
+}
+
+inst_bin() {
+    info_hc    
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
     curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
     sudo chmod +x $app
@@ -78,6 +79,5 @@ implode_hc() {
 [[ "$p" == "-r" ]] && implode_hc
 
 # final stuff
-info_hc
 msg "use: command -elir"
 msg "[${app_desc}] process complete."
