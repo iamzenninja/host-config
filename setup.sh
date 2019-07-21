@@ -15,18 +15,23 @@ ed="$EDITOR"
 [[ ! -s $ed ]] && ed=`which nano`
 
 # colors
-clr='\e[0m'; inv='\e[7m'
-
-# verify git installed
-git --version 2>&1 >/dev/null
-if [ ! $? -eq 0 ];then
-  echo "!!! [$app_desc] stopped, git required for use."
-  exit 1
-fi
+clr='\e[0m'; inv='\e[7m'; err='\e[5m'
 
 msg(){ 
   echo -e "$inv$1$clr" 
 }
+
+emsg() {
+  echo -e "$err$1$clr"
+}
+
+# verify git installed
+git --version 2>&1 >/dev/null
+if [ ! $? -eq 0 ];then
+  emsg "!!! [$app_desc] stopped, git required for use."
+  exit 1
+fi
+
 msg "Starting ops for ${app_desc}"
 
 info_hc() {
@@ -43,14 +48,14 @@ inst_bin() {
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
     curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
     sudo chmod +x $app
-    [[ ! -s $app ]] && msg "!!! [${app_desc}] binary not installed."
+    [[ ! -s $app ]] && emsg "!!! [${app_desc}] binary not installed."
 }
 
 clone_hc() {
 	msg "cloning from: $repo to: ${hcwd}"
 	git clone $repo ${hcwd} && mkdir ${working}
 	if [[ ! -d $hcwd ]];then
-	  echo "Host config repo not cloned !!!"
+	  emsg "Host config repo not cloned !!!"
 	else
 	  cd ${working}
 	  ln -s ~/.bashrc ./dot_bashrc
