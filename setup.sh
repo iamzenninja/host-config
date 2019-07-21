@@ -52,6 +52,13 @@ inst_bin() {
     [[ ! -s $app ]] && emsg "!!! [${app_desc}] binary not installed."
 }
 
+check_mrc_helper() {
+  helper="alias mm=\"micro ~/.mrc;echo '!@#$>mmm=refresh'";alias mmm=". ~/.mrc\";. ~/.mrc;"
+  [[ ! -r ~/.mrc ]] && echo "# .bashrc .zshrc: $helper" > ~/.mrc
+  cat ~/.bashrc | grep '.mrc'
+  [[ ! $? -eq 0 ]] && echo $helper >> ~/.bashrc
+}
+
 clone_hc() {
 	msg "cloning from: $repo to: ${hcwd}"
 	git clone $repo ${hcwd} && mkdir ${working}
@@ -77,6 +84,7 @@ implode_hc() {
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
 [[ "$p" == "-i" ]] && info_hc
 [[ "$p" == "-r" ]] && implode_hc
+check_mrc_helper
 
 # final stuff
 msg "use: command -elir"
