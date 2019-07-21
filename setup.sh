@@ -65,6 +65,6 @@ implode_hc() {
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
 [[ "$p" == "-i" ]] && info_hc
 
-info_rc
+info_hc
 msg "use: command -eli"
 msg "[${app_desc}] process complete."
