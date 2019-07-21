@@ -90,8 +90,10 @@ check_mrc_helper
 [[ -d ${working} ]] && cd ${working}
 [[ "$p" == "-e" ]] && msg "editing..." && ${ed} *
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
-[[ "$p" == "-i" ]] && info_hc
+[[ "$p" == "-i" ]] && inst_bin
+[[ "$p" == "-c" ]] && clone_hc
 [[ "$p" == "-r" ]] && implode_hc
+[[ "$p" == "-v" ]] && info_hc
 
 # final stuff
 msg "use: command -elir"
