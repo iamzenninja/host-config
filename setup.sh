@@ -33,9 +33,10 @@ msg "Starting ops for ${app_desc}"
 info_hc() {
     msg "INFO: ${app_desc}"
     msg "app: $app"
-	msg "clone: $repo"
-	msg "working: $working"
-	msg "editor: $ed"
+    msg "p1: $p"
+    msg "clone: $repo"
+    msg "working: $working"
+    msg "editor: $ed"
 }
 
 inst_bin() {
