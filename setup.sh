@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # capture vars
-me=$0;p=$1;h=`hostname`
+me=$0;p=$1;h=`hostname`;inst=$2
 
 # options - todo: autodetect reponame
 repo="git://github.com/iamzenninja/host-config.git"
@@ -40,8 +40,7 @@ info_hc() {
 
 inst_bin() {
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
-    curl $2 | sudo tee ${app} 2>&1 >/dev/null
-    #msg "msg: sudo curl -o- $2 $app"
+    curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
     sudo chmod +x $app
     [[ ! -s $app ]] && msg "!!! [${app_desc}] binary not installed."
 }
