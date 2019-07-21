@@ -40,7 +40,7 @@ info_hc() {
 
 inst_bin() {
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
-    sudo curl -o- $2 > $app
+    sudo curl $2 > ${app}
     msg "msg: sudo curl -o- $2 $app"
     sudo chmod +x $app
     [[ ! -s $app ]] && msg "!!! [${app_desc}] binary not installed."
