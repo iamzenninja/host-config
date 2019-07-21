@@ -33,6 +33,7 @@ info_hc() {
     msg "INFO: ${app_desc}"
     msg "app: $app"
     msg "p1: $p"
+    msg "inst: $inst"
     msg "clone: $repo"
     msg "working: $working"
     msg "editor: $ed"
@@ -63,7 +64,7 @@ implode_hc() {
 }
 
 [[ ! -s $app ]] && inst_bin
-[[ ! -d $hcd ]] && clone_hc
+[[ ! -d $hwcd ]] && clone_hc
 
 [[ -d ${working} ]] && cd ${working}
 [[ "$p" == "-e" ]] && msg "editing..." && ${ed} *
