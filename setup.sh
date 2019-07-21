@@ -4,7 +4,7 @@
 me=$0;p=$1;h=`hostname`
 
 # options
-repo="iamninja"
+repo="github.com/iamzenninja/host-config.git"
 
 # sub options-usually leave alone
 app_desc="host-config (>hc)"
@@ -16,7 +16,6 @@ ed="$EDITOR"
 
 # colors
 clr='\e[0m'; inv='\e[7m'
-
 
 # verify git installed
 git --version 2>&1 >/dev/null
@@ -41,14 +40,15 @@ info_hc() {
 
 inst_bin() {
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
-	echo "sudo cp $me $app"
-	echo "sudo chmod +x $app"
+    sudo curl -o- $2 > $app
+    msg "msg: sudo curl -o- $2 $app"
+    sudo chmod +x $app
     [[ ! -s $app ]] && msg "!!! [${app_desc}] binary not installed."
 }
 
 clone_hc() {
 	msg "cloning from: $repo to: ${hcwd}"
-	echo "git clone $repo ${hcwd} && mkdir ${working}"
+	git clone $repo ${hcwd} && mkdir ${working}
 	[[ ! -d $hcwd ]] && echo "Host config repo not cloned !!!"
 }
 
