@@ -4,7 +4,7 @@
 me=$0;p=$1;h=`hostname`
 
 # options - todo: autodetect reponame
-repo="git@github.com:iamzenninja/host-config.git"
+repo="git://github.com/iamzenninja/host-config.git"
 
 # sub options-usually leave alone
 app_desc="host-config (>hc)"
@@ -49,7 +49,12 @@ inst_bin() {
 clone_hc() {
 	msg "cloning from: $repo to: ${hcwd}"
 	git clone $repo ${hcwd} && mkdir ${working}
-	[[ ! -d $hcwd ]] && echo "Host config repo not cloned !!!"
+	if [[ ! -d $hcwd ]];then
+	  echo "Host config repo not cloned !!!"
+	else
+	  cd ${working}
+	  ls -s ~/.bashrc ./dot_bashrc
+	fi
 }
 
 implode_hc() {
