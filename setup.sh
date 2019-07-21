@@ -64,7 +64,7 @@ implode_hc() {
 }
 
 [[ ! -s $app ]] && inst_bin
-[[ ! -d $hwcd ]] && clone_hc
+[[ ! -d $hcwd ]] && clone_hc
 
 [[ -d ${working} ]] && cd ${working}
 [[ "$p" == "-e" ]] && msg "editing..." && ${ed} *
