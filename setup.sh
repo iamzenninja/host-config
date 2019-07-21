@@ -54,6 +54,7 @@ inst_bin() {
 
 check_mrc_helper() {
   helper='alias mm="micro ~/.mrc";echo "!@#$>mmm=refresh";alias mmm=". ~/.mrc\";. ~/.mrc'
+  echo $helper
   [[ ! -r ~/.mrc ]] && echo "# .bashrc .zshrc: $helper" > ~/.mrc
   cat ~/.bashrc | grep '.mrc'
   [[ ! $? -eq 0 ]] && echo $helper >> ~/.bashrc
