@@ -55,7 +55,11 @@ inst_bin() {
 
 check_mrc_helper() {
   helper='alias mm="nano ~/.mrc"; alias mmm="source ~/.mrc"; source ~/.mrc'
-  [[ ! -r ~/.mrc ]] && echo -e "# .bashrc .zshrc: $helper\n\nalias m='vi ~/.mrc'" > ~/.mrc
+  if [[ ! -r ~/.mrc ]]; then 
+    echo "# .bashrc .zshrc: $helper" > ~/.mrc
+    echo "" >> ~/.mrc
+    echo -e "alias hcd=cd $working; pwd" >> ~/.mrc
+  fi
   cat ~/.bashrc | grep '.mrc'
   [[ ! $? -eq 0 ]] && echo $helper >> ~/.bashrc
 }
