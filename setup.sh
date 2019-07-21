@@ -44,15 +44,6 @@ info_hc() {
     msg "clone: $repo"
 }
 
-inst_bin() {
-    info_hc    
-    msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
-    curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
-    sudo chmod +x $app
-    [[ ! -s $app ]] && emsg "!!! [${app_desc}] binary not installed."
-}
-
-
 check_mrc_helper() {
   helper='alias mm="nano ~/.mrc"; alias mmm="source ~/.mrc"; source ~/.mrc'
   if [[ ! -r ~/.mrc ]]; then 
@@ -77,6 +68,15 @@ clone_hc() {
 	fi
 }
 
+inst_bin() {
+    info_hc    
+    msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
+    curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
+    sudo chmod +x $app
+    [[ ! -s $app ]] && emsg "!!! [${app_desc}] binary not installed."
+    clone_hc
+}
+
 implode_hc() {
     echo "uninstalling [${app_desc}]"
 	sudo rm -rf ${hcwd}
@@ -90,7 +90,6 @@ check_mrc_helper
 [[ -d ${working} ]] && cd ${working}
 [[ "$p" == "-e" ]] && msg "editing..." && ${ed} *
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
-[[ "$p" == "-i" ]] && inst_bin
 [[ "$p" == "-c" ]] && clone_hc
 [[ "$p" == "-r" ]] && implode_hc
 [[ "$p" == "-v" ]] && info_hc
