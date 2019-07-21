@@ -53,7 +53,7 @@ clone_hc() {
 	  echo "Host config repo not cloned !!!"
 	else
 	  cd ${working}
-	  ls -s ~/.bashrc ./dot_bashrc
+	  ln -s ~/.bashrc ./dot_bashrc
 	fi
 }
 
@@ -70,8 +70,9 @@ implode_hc() {
 [[ "$p" == "-e" ]] && msg "editing..." && ${ed} *
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
 [[ "$p" == "-i" ]] && info_hc
+[[ "$p" == "-r" ]] && implode_hc
 
 # final stuff
 info_hc
-msg "use: command -eli"
+msg "use: command -elir"
 msg "[${app_desc}] process complete."
