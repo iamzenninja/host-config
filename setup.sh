@@ -68,6 +68,7 @@ clone_hc() {
 	  cd ${working}
 	  ln -s ~/.bashrc ./dot_bashrc
 	  ln -s /etc/environment ./etc_environment
+	  ln -s ~/.mrc ./dot_mrc
 	fi
 }
 
@@ -77,6 +78,7 @@ implode_hc() {
 	sudo rm -f ${app}
 }
 
+check_mrc_helper
 [[ ! -s $app ]] && inst_bin
 [[ ! -d $hcwd ]] && clone_hc
 
@@ -85,7 +87,6 @@ implode_hc() {
 [[ "$p" == "-l" ]] && msg "listing files..." && ls -ltr
 [[ "$p" == "-i" ]] && info_hc
 [[ "$p" == "-r" ]] && implode_hc
-check_mrc_helper
 
 # final stuff
 msg "use: command -elir"
