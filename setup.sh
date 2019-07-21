@@ -37,14 +37,14 @@ msg "Starting ops for ${app_desc}"
 info_hc() {
     msg "INFO: ${app_desc}"
     msg "app: $app"
-    msg "p1: $p"
-    msg "inst: $inst"
-    msg "clone: $repo"
     msg "working: $working"
     msg "editor: $ed"
 }
 
 inst_bin() {
+    msg "p1: $p"
+    msg "inst: $inst"
+    msg "clone: $repo"
     msg "installing...\n\t${app_desc}...\n\t\tplease waqit..."
     curl ${inst} | sudo tee ${app} 2>&1 >/dev/null
     sudo chmod +x $app
