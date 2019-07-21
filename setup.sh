@@ -52,6 +52,7 @@ inst_bin() {
     [[ ! -s $app ]] && emsg "!!! [${app_desc}] binary not installed."
 }
 
+
 check_mrc_helper() {
   helper='alias mm="nano ~/.mrc"; alias mmm="source ~/.mrc"; source ~/.mrc'
   [[ ! -r ~/.mrc ]] && echo -e "# .bashrc .zshrc: $helper\n\nalias m='vi ~/.mrc'" > ~/.mrc
