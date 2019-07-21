@@ -9,7 +9,7 @@ repo="git://github.com/iamzenninja/host-config.git"
 # sub options-usually leave alone
 app_desc="host-config (>hc)"
 app="/usr/local/bin/hc"
-hcwd="~/host-config"
+hcwd="$HOME/host-config"
 working="${hcwd}/${h}"
 ed="$EDITOR"
 [[ ! -s $ed ]] && ed=`which nano`
