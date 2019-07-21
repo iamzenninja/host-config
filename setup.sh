@@ -3,8 +3,8 @@
 # capture vars
 me=$0;p=$1;h=`hostname`
 
-# options
-repo="github.com/iamzenninja/host-config.git"
+# options - todo: autodetect reponame
+repo="git@github.com:iamzenninja/host-config.git"
 
 # sub options-usually leave alone
 app_desc="host-config (>hc)"
